@@ -1,6 +1,88 @@
 # Import Module
 from tkinter import *
 
+
+def rowComplete(row):
+  # Tests if a row is all equal to 1 or 0
+  if row[0] != "-" and all(element == row[0] for element in row):
+    return row[0]
+  else:
+    return None
+
+
+def getColumn(matrix, index):
+  # Gets a column from the matrix
+  return [row[index] for row in matrix]
+
+
+def getDiagonal(matrix, descend):
+  # Gets a diagnol line from the matrix
+  out = []
+  for i in range(3):
+    row = matrix[i]
+    out += row[2 - i if descend else i]
+  return out
+    
+
+def codeToWinner(code):
+  # Simply gets who won, A or B
+  return "A" if code == '0' else "B"
+
+
+def validateMatrix(matrix):
+  # Validates a matrix to ensure it's good to work on
+  A_count = 0
+  B_count = 0
+  if len(matrix) != 3:
+    # If there are more than three rows
+    return False
+  for row in matrix:
+    if len(row) != 3:
+      # If there are more than three cells in a row
+      return False
+    for cell in row:
+      if cell == "0":
+        A_count += 1
+      elif cell == "1":
+        B_count += 1
+      elif cell != "-":
+        # If a cell contains a value other than 1, 0, or "-"
+        return False
+  diff = A_count - B_count
+  # Ensure that no player has played more moves than they're supposed to
+  return diff <= 1 and diff >= -1
+
+
+def evaluateWinner(matrix):
+  # Vaidate our matrix
+  if not validateMatrix(matrix):
+    return "-1"
+
+  # See if any rows are complete
+  for row in matrix:
+    winner = rowComplete(row)
+    if winner is not None:
+      return codeToWinner(winner)
+
+  # See if any columns are complete
+  for i in range(0, 3):
+    col = getColumn(matrix, i)
+    winner = rowComplete(col)
+    if winner is not None:
+      return codeToWinner(winner)
+
+  # See if any diagnols are complete
+  winner = rowComplete(getDiagonal(matrix, False))
+  if winner is not None:
+    return codeToWinner(winner)
+  winner = rowComplete(getDiagonal(matrix, True))
+  if winner is not None:
+    return codeToWinner(winner)
+  
+  # If nothing was complete, then our game is incomplete
+  return "0"
+
+
 def createRootWindow(self):    
     # root window title and dimension
     self.title("TicTacToe")
