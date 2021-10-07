@@ -16,7 +16,7 @@ def getColumn(matrix, index):
 
 
 def getDiagonal(matrix, descend):
-  # Gets a diagnol line from the matrix
+  # Gets a diagonal line from the matrix
   out = []
   for i in range(3):
     row = matrix[i]
