@@ -71,7 +71,7 @@ def evaluateWinner(matrix):
     if winner is not None:
       return codeToWinner(winner)
 
-  # See if any diagnols are complete
+  # See if any diagonals are complete
   winner = rowComplete(getDiagonal(matrix, False))
   if winner is not None:
     return codeToWinner(winner)
