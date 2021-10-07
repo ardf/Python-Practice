@@ -21,7 +21,7 @@ Hacktoberfest, in its 8th year, is a month-long celebration of open source softw
 3. Fork this repository (Click the Fork button in the top right of this page, click your Profile Image).
 4. Clone your fork down to your local machine.
     ```
-    git clone https://github.com/your-username/hacktoberfest.git
+    git clone https://github.com/your-username/python-practice.git
     ```
 5. Create a branch.
     ```
