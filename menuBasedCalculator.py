@@ -24,7 +24,7 @@ def divideIntegers(a, b):
 
 # Function to get user input
 def getIntegers():
-    print("Enter two integers with a space between them. eg: 15 20")
+    print("Enter two integers with a space between them. eg: 50 20")
     try:
         a, b = input("Enter num1 and num2: ").strip().split()
         a = int(a)
